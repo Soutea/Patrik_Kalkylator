@@ -12,9 +12,11 @@ var kostnadSliderPreview = document.getElementById('kostnad-preview');
 
 var arbetsgivarSpan = document.getElementById('arbetsgivar');
 var kommunalSpan = document.getElementById('kommunal');
+var jobbskattSpan = document.getElementById('jobbskatt');
 
 var rdValue = 0;
 var bruttoValue = 42000;
+var jobbskatt= 2500;
 
 //testa att JS kommunicerar
 
@@ -68,6 +70,10 @@ displayKommunalChange(values[handle]);
 displayArbetsgivarChange(values[handle], rdValue ? rdValue : 0);
 });
 
+// Visa den fasta jobbskatteavdraget
+displayJobbskatt(jobbskatt);
+
+
 // Kostnader
 noUiSlider.create(kostnad, {
   start: [5000],
@@ -86,8 +92,6 @@ function handleRDChange(element) {
   displayArbetsgivarChange(bruttoValue, rdValue);
 }
 
-
-
 function displayKommunalChange(brutto) {
   kommunalSpan.innerHTML = brutto * 0.295;
 }
@@ -96,6 +100,8 @@ function displayArbetsgivarChange(brutto, rd) {
   arbetsgivarSpan.innerHTML = (brutto * 0.3142) - (rd * brutto);
 }
 
-
+function displayJobbskatt(jobbskatt) {
+  jobbskattSpan.innerHTML = jobbskatt;
+}
 
 
