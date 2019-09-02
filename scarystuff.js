@@ -10,12 +10,6 @@ var antalTimmarSliderPreview = document.getElementById("antaltimmar-preview");
 var bruttoSliderPreview = document.getElementById("brutto-preview");
 var kostnadSliderPreview = document.getElementById("kostnad-preview");
 
-var arbetsgivarSpan = document.getElementById("arbetsgivar");
-var kommunalSpan = document.getElementById("kommunal");
-var jobbskattSpan = document.getElementById("jobbskatt");
-var totallonSpan = document.getElementById("totallon");
-var nettoSpan = document.getElementById("netto");
-
 var data = {
   // Inputs
   timArvode: 750,
@@ -33,8 +27,20 @@ var data = {
   // Calculated values
   kommunal: 12390,
   arbetsgivar: 8996.4,
-  netto: 32110,
-  total: 54374.2
+  nettoLon: 32110,
+  total: 54374.2,
+  skatt: 83547.11,
+  nettoUtdelning: 218400,
+
+  // Output values TODO FROM EXCEL
+  omsattning: 0,
+  personal: 0,
+  kostnader: 0,
+  vinst: 0,
+  utdelningsmojlighet: 0,
+  nettoManad: 0,
+  motsvarandeLon: 0,
+  overskott: 0
 };
 
 // #region
@@ -70,12 +76,14 @@ console.log("hello World!;");
 timArvode.noUiSlider.on("update", function(values, handle) {
   timArvodeSliderPreview.innerHTML = values[handle];
   data.timArvode = +values[handle];
+  updateValues();
 });
 
 // Värdet på antal timmar
 antalTimmar.noUiSlider.on("update", function(values, handle) {
   antalTimmarSliderPreview.innerHTML = values[handle];
   data.antalTimmar = +values[handle];
+  updateValues();
 });
 
 // Värdet på Bruttolön
@@ -90,6 +98,7 @@ brutto.noUiSlider.on("update", function(values, handle) {
 kostnad.noUiSlider.on("update", function(values, handle) {
   kostnadSliderPreview.innerHTML = values[handle];
   data.kostnad = +values[handle];
+  updateValues();
 });
 
 function handleRDChange(element) {
@@ -104,7 +113,6 @@ function handleBilChange(element) {
 }
 
 function handlePensionChange(element) {
-  //Not sure if right
   data.pension = element.checked ? 4000 : 0;
   updateValues();
 }
@@ -112,10 +120,37 @@ function handlePensionChange(element) {
 function updateValues() {
   data.kommunal = data.brutto * 0.295;
   data.arbetsgivar = data.brutto * 0.3142 - data.rd * data.brutto;
-  data.netto = data.brutto - data.kommunal + data.jobbskatt;
+  data.nettoLon = data.brutto - data.kommunal + data.jobbskatt;
   data.total = data.brutto + data.arbetsgivar + data.bil1 * (0.3142 + 0.295) + data.pension * 0.3114;
 
+  //TODO CALCULATIONS
+  data.skatt = 0;
+  data.nettoUtdelning = 0;
+
+  data.omsattning;
+  data.personal;
+  data.kostnader;
+  data.vinst;
+  data.utdelningsmojlighet;
+  data.nettoManad;
+  data.motsvarandeLon;
+  data.overskott;
+
   console.log(data);
+  updateView();
 }
 
-function updateView() {}
+function updateView() {
+  updateDomElement("omsattning", data.omsattning);
+  updateDomElement("personal", data.personal);
+  updateDomElement("kostnader", data.kostnader);
+  updateDomElement("vinst", data.vinst);
+  updateDomElement("utdelningsmojlighet", data.utdelningsmojlighet);
+  updateDomElement("nettoManad", data.nettoManad);
+  updateDomElement("motsvarandeLon", data.motsvarandeLon);
+  updateDomElement("overskott", data.overskott);
+}
+
+function updateDomElement(elementId, value) {
+  document.getElementById(elementId).innerHTML = value;
+}
