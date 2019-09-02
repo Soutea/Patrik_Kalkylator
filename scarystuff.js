@@ -1,139 +1,121 @@
 // variabler
 
-var timArvode = document.getElementById('myRange1');
-var antalTimmar = document.getElementById('myRange2');
-var brutto = document.getElementById('myRange3');
-var kostnad = document.getElementById('myRange4');
+var timArvode = document.getElementById("myRange1");
+var antalTimmar = document.getElementById("myRange2");
+var brutto = document.getElementById("myRange3");
+var kostnad = document.getElementById("myRange4");
 
-var timArvodeSliderPreview = document.getElementById('timarvode-preview');
-var antalTimmarSliderPreview = document.getElementById('antaltimmar-preview');
-var bruttoSliderPreview = document.getElementById('brutto-preview');
-var kostnadSliderPreview = document.getElementById('kostnad-preview');
+var timArvodeSliderPreview = document.getElementById("timarvode-preview");
+var antalTimmarSliderPreview = document.getElementById("antaltimmar-preview");
+var bruttoSliderPreview = document.getElementById("brutto-preview");
+var kostnadSliderPreview = document.getElementById("kostnad-preview");
 
-var arbetsgivarSpan = document.getElementById('arbetsgivar');
-var kommunalSpan = document.getElementById('kommunal');
-var jobbskattSpan = document.getElementById('jobbskatt');
-var totallonSpan = document.getElementById('totallon');
-var nettoSpan = document.getElementById('netto');
+var arbetsgivarSpan = document.getElementById("arbetsgivar");
+var kommunalSpan = document.getElementById("kommunal");
+var jobbskattSpan = document.getElementById("jobbskatt");
+var totallonSpan = document.getElementById("totallon");
+var nettoSpan = document.getElementById("netto");
 
-var rdValue = 0;
-var bruttoValue = 42000;
-var jobbskatt= 2500;
-var bilValue = 0;
-var pensionValue = 0;
+var data = {
+  // Inputs
+  timArvode: 750,
+  antalTimmar: 1750,
+  brutto: 42000,
+  kostnad: 5000,
+
+  jobbskatt: 2500,
+
+  bil1: 0,
+  bil2: 0,
+  pension: 0,
+  rd: 0,
+
+  // Calculated values
+  kommunal: 12390,
+  arbetsgivar: 8996.4,
+  netto: 32110,
+  total: 54374.2
+};
+
+// #region
+var sliders = [
+  { element: timArvode, start: 750, step: 5, min: 500, max: 1200 },
+  { element: antalTimmar, start: 1750, step: 5, min: 0, max: 2500 },
+  { element: brutto, start: 42000, step: 1000, min: 30000, max: 70000 },
+  { element: kostnad, start: 5000, step: 5, min: 0, max: 15000 }
+];
+
+function initSlider(sliderConfig) {
+  noUiSlider.create(sliderConfig.element, {
+    start: [sliderConfig.start],
+    step: sliderConfig.step,
+    range: {
+      min: [sliderConfig.min],
+      max: [sliderConfig.max]
+    }
+  });
+}
+
+sliders.forEach(slider => {
+  initSlider(slider);
+});
+
+// #endregion
 
 //testa att JS kommunicerar
 
-console.log("hello World!;")
-
-//sliders med previews
+console.log("hello World!;");
 
 // Timarvode
-noUiSlider.create(timArvode, {
-  start: [750],
-  step: 5,
-  range: {
-      'min': [500],
-      'max': [1200]
-  }
-});
-timArvode.noUiSlider.on('update', function (values, handle) {
-    timArvodeSliderPreview.innerHTML = values[handle];
-});
-
-// Antal timmar-slider
-noUiSlider.create(antalTimmar, {
-  start: [1750],
-  step: 5,
-  range: {
-      'min': [0],
-      'max': [2500]
-  }
+timArvode.noUiSlider.on("update", function(values, handle) {
+  timArvodeSliderPreview.innerHTML = values[handle];
+  data.timArvode = +values[handle];
 });
 
 // Värdet på antal timmar
-antalTimmar.noUiSlider.on('update', function (values, handle) {
+antalTimmar.noUiSlider.on("update", function(values, handle) {
   antalTimmarSliderPreview.innerHTML = values[handle];
-});
-
-// Bruttolön-slider
-noUiSlider.create(brutto, {
-  start: [42000],
-  step: 1000,
-  range: {
-      'min': [30000],
-      'max': [70000]
-  }
+  data.antalTimmar = +values[handle];
 });
 
 // Värdet på Bruttolön
-brutto.noUiSlider.on('update', function (values, handle) {
+brutto.noUiSlider.on("update", function(values, handle) {
   bruttoSliderPreview.innerHTML = values[handle];
-  bruttoValue = values[handle];
+  data.brutto = +values[handle];
 
-// Visa kommunalskatt från bruttolönen
-displayKommunalChange(values[handle]);
-
-// Visa arbetsgivaravgift från bruttolönen och RD-värdet
-displayArbetsgivarChange(values[handle], rdValue ? rdValue : 0);
-
-// Visa den totala lönekostnaden
-
-// visa nettokostnad från bruttolön, kommunalskatt och jobbskatteavdrag
-displayNetto(values[handle], jobbskatt);
-});
-
-// Visa den fasta jobbskatteavdraget
-displayJobbskatt(jobbskatt);
-
-
-// Kostnad-slider
-noUiSlider.create(kostnad, {
-  start: [5000],
-  step: 5,
-  range: {
-      'min': [0],
-      'max': [15000]
-  }
+  updateValues();
 });
 
 // Värdet på kostnaden
-kostnad.noUiSlider.on('update', function (values, handle) {
+kostnad.noUiSlider.on("update", function(values, handle) {
   kostnadSliderPreview.innerHTML = values[handle];
+  data.kostnad = +values[handle];
 });
 
 function handleRDChange(element) {
-  rdValue = +element.value;
-  displayArbetsgivarChange(bruttoValue, rdValue);
+  data.rd = element.checked ? 0.1 : 0;
+  updateValues();
 }
 
-function displayKommunalChange(brutto) {
-  kommunalSpan.innerHTML = brutto * 0.295;
+function handleBilChange(element) {
+  data.bil1 = element.checked ? 3500 : 0;
+  data.bil2 = element.checked ? 4000 : 0;
+  updateValues();
 }
 
-function displayArbetsgivarChange(brutto, rd) {
-  arbetsgivarSpan.innerHTML = (brutto * 0.3142) - (rd * brutto);
+function handlePensionChange(element) {
+  //Not sure if right
+  data.pension = element.checked ? 4000 : 0;
+  updateValues();
 }
 
-function displayJobbskatt(jobbskatt) {
-  jobbskattSpan.innerHTML = jobbskatt;
+function updateValues() {
+  data.kommunal = data.brutto * 0.295;
+  data.arbetsgivar = data.brutto * 0.3142 - data.rd * data.brutto;
+  data.netto = data.brutto - data.kommunal + data.jobbskatt;
+  data.total = data.brutto + data.arbetsgivar + data.bil1 * (0.3142 + 0.295) + data.pension * 0.3114;
+
+  console.log(data);
 }
 
-function handleBilChange(element) { //Not sure if right
-  bilValue = +element.value;
-}
-
-function handlePensionChange(element) { //Not sure if right
-  pensionValue = +element.value;
-}
-
-function displayTotallon(brutto, bil, ) {
-//TODO
-}
-
-function displayNetto(brutto, jobbskatt){
-nettoSpan.innerHTML = (brutto - (brutto * 0.295) + jobbskatt)
-}
-
-
-
+function updateView() {}

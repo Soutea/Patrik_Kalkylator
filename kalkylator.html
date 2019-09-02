@@ -1,98 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+  <head>
     <title>Patriks kalkylator</title>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8" />
 
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.css" rel="stylesheet">
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js"></script>
-      <link rel="stylesheet" href="styles.css">
-    </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
   <body>
-<p>T1 Timarvode: <span id="timarvode-preview"></span> kr/h</p>
-<div class="slidecontainer">
-  <div id="myRange1">
+    <p>T1 Timarvode: <span id="timarvode-preview"></span> kr/h</p>
+    <div class="slidecontainer">
+      <div id="myRange1"></div>
     </div>
-</div>
-<span></span>
+    <span></span>
 
-<p>T2 Antal timmar per år (normalt år 1 750 h): <span id="antaltimmar-preview"></span> timmar/år</p>
-<div class="slidecontainer">
-  <div id="myRange2">
+    <p>
+      T2 Antal timmar per år (normalt år 1 750 h):
+      <span id="antaltimmar-preview"></span> timmar/år
+    </p>
+    <div class="slidecontainer">
+      <div id="myRange2"></div>
     </div>
-</div>
-<span></span>
+    <span></span>
 
-<p>L1 Önskad brutto lön (rekommenderad lön 42 000 kr): <span id="brutto-preview"></span> kr</p>
-<div class="slidecontainer">
-  <div id="myRange3">
+    <p>
+      L1 Önskad brutto lön (rekommenderad lön 42 000 kr):
+      <span id="brutto-preview"></span> kr
+    </p>
+    <div class="slidecontainer">
+      <div id="myRange3"></div>
     </div>
-</div>
-<span></span>
+    <span></span>
 
-<p>K1 Kostnader: <span id="kostnad-preview"></span> kr</p>
-<div class="slidecontainer">
-  <div id="myRange4">
+    <p>K1 Kostnader: <span id="kostnad-preview"></span> kr</p>
+    <div class="slidecontainer">
+      <div id="myRange4"></div>
     </div>
-</div>
-<span></span>
+    <span></span>
 
-<br>
+    <br />
 
-<form>
-    <p>P1 Pension</p>
-      <input type="radio" onclick="handlePensionChange(this)"
-       name="pension" value="0" checked>
-      <label for="contactChoice1">0 kr</label>
-      <input type="radio" onclick="handlePensionChange(this)"
-       name="pension" value="4000">
-      <label for="pension2">4000 kr</label>
-    </div>
-  </form>
-  <form>
-      <p>B1 & B2 Förmånsvärde bil med billeasing + 50% moms</p>
-        <input type="radio" onclick="handleBilChange(this)"
-         name="bil" value="0" checked>
-        <label for="bil1">0 kr</label>
-        <input type="radio" onclick="handleBilChange(this)"
-         name="bil" value="3500">
-        <label for="bil2">3500 kr</label>
-        <input type="radio" onclick="handleBilChange(this)"
-        name="bil" value="3500">
-       <label for="bil3">4000 kr</label>
-      </div>
-  </form>
-  <form>
-      <p>F1 R&D?</p>
-        <input type="radio" onclick="handleRDChange(this)"
-         name="rd" value="0" checked>
-        <label for="rd1">0%</label>
-        <input type="radio" onclick="handleRDChange(this)"
-         name="rd" value="0.1">
-        <label for="rd2">10%</label>
-      </div>
-  </form>
+    <form>
+      <p></p>
+      <input type="checkbox" onclick="handlePensionChange(this)" />
+      <label> Tjänstepension (4000 sek/mån) </label>
+      <p></p>
+      <input type="checkbox" onclick="handleBilChange(this)" />
+      <label>Bil (BMW 530e, Lexus NX hybrid eller motsvarande</label>
+      <p></p>
+      <input type="checkbox" onclick="handleRDChange(this)" />
+      <label> Jobbar inom R&D, utveckling/forskning? </label>
+    </form>
 
-<br>
+    <br />
 
-  <p>A1 Arbetsgivaravgift</p>
-  <span id="arbetsgivar"></span>
-  
-<br>
-
-  <p>A2 Kommunalskatt</p>
-  <span id="kommunal"></span>
-
-  <p>J1 Jobbskatteavdrag</p>
-  <span id="jobbskatt"></span>
-
-  <p>L2 Totala lönekostnader</p>
-  <span id="totallon"></span>
-  
-  <p>L3 Netto</p>
-  <span id="netto"></span>
-
-      <script src="scarystuff.js"></script>
+    <script src="scarystuff.js"></script>
   </body>
-      </html>
+</html>
