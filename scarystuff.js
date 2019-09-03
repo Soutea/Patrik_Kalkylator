@@ -53,7 +53,7 @@ var sliders = [
   { element: antalTimmar, start: 1750, step: 5, min: 0, max: 2500 },
   { element: brutto, start: 42000, step: 1000, min: 30000, max: 70000 },
   { element: kostnad, start: 5000, step: 5, min: 0, max: 15000 },
-  { element: utdelning, start: 273000, step: 5, min: 0, max: 1000000 }
+  { element: utdelning, start: 273000, step: 5, min: 0, max: 1000000 } //TODO calculate the startvalue from the input
 ];
 
 function initSlider(sliderConfig) {
@@ -112,6 +112,14 @@ utdelning.noUiSlider.on("update", function(values, handle) {
   updateValues();
 });
 
+function caclculateUtdelningMax() {
+  if (data.vinst - data.skatt > data.utdelninsmojlighet) {
+    return (max = data.utdelninsmojlighet);
+  } else {
+    return (max = data.vinst - data.skatt);
+  }
+}
+
 // Clickrutor
 function handleRDChange(element) {
   data.rd = element.checked ? 0.1 : 0;
@@ -162,6 +170,13 @@ function updateView() {
   updateDomElement("nettoManad", data.nettoManad);
   updateDomElement("motsvarandeLon", data.motsvarandeLon);
   updateDomElement("overskott", data.overskott);
+
+  utdelning.noUiSlider.updateOptions({
+    range: {
+      min: 0,
+      max: caclculateUtdelningMax()
+    }
+  });
 }
 function updateDomElement(elementId, value) {
   document.getElementById(elementId).innerHTML = value;
