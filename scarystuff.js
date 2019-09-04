@@ -35,6 +35,7 @@ var data = {
   total: 54374.2,
   skatt: 83547.11,
   nettoUtdelning: 218400,
+  statligInkomstskatt: 0,
 
   // Output values
   omsattning: 1225000,
@@ -53,7 +54,7 @@ var sliders = [
   { element: antalTimmar, start: 1750, step: 5, min: 0, max: 2500 },
   { element: brutto, start: 42000, step: 1000, min: 30000, max: 70000 },
   { element: kostnad, start: 5000, step: 100, min: 0, max: 15000 },
-  { element: utdelning, start: 273000, step: 1000, min: 0, max: 273000 } //TODO calculate the startvalue from the input
+  { element: utdelning, start: 273000, step: 1000, min: 0, max: 273000 }
 ];
 
 function initSlider(sliderConfig) {
@@ -109,14 +110,13 @@ kostnad.noUiSlider.on("update", function(values, handle) {
 utdelning.noUiSlider.on("update", function(values, handle) {
   utdelningSliderPreview.innerHTML = values[handle];
   data.utdelning = +values[handle];
-  updateValues();
 });
 
 function calculateUtdelningMax() {
   if (data.vinst - data.skatt > data.utdelninsmojlighet) {
-    return (max = data.utdelninsmojlighet);
+    return data.utdelninsmojlighet;
   } else {
-    return (max = data.vinst - data.skatt);
+    return data.vinst - data.skatt;
   }
 }
 
@@ -141,7 +141,8 @@ function handlePensionChange(element) {
 function updateValues() {
   data.kommunal = data.brutto * 0.295;
   data.arbetsgivar = data.brutto * 0.3142 - data.rd * data.brutto;
-  data.nettoLon = data.brutto - data.kommunal + data.jobbskatt;
+  data.statligInkomstskatt = (data.brutto - 42000) * 0.25;
+  data.nettoLon = data.brutto - data.kommunal + data.jobbskatt - data.statligInkomstskatt;
   data.total = data.brutto + data.arbetsgivar + data.bil1 * (0.3142 + 0.295) + data.pension * 0.3114;
 
   data.skatt = data.vinst * 0.22;
@@ -156,9 +157,12 @@ function updateValues() {
   data.motsvarandeLon = (data.nettoManad - 32000) * 1.199 + data.nettoManad * 1.295;
   data.overskott = data.vinst - data.skatt - data.utdelning;
 
-  console.log(data);
   updateView();
 }
+
+//Visa data i konsollen
+console.log(data);
+console.log(calculateUtdelningMax());
 
 //Uppdatera vyn
 function updateView() {
@@ -178,6 +182,7 @@ function updateView() {
     }
   });
 }
+
 function updateDomElement(elementId, value) {
   document.getElementById(elementId).innerHTML = value;
 }
