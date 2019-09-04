@@ -113,9 +113,12 @@ utdelning.noUiSlider.on("update", function(values, handle) {
 });
 
 function calculateUtdelningMax() {
-  if (data.vinst - data.skatt > data.utdelninsmojlighet) {
-    return data.utdelninsmojlighet;
+  console.log(data.vinst - data.skatt > data.utdelningsmojlighet);
+  if (data.vinst - data.skatt > data.utdelningsmojlighet) {
+    console.log("case 1", data.utdelningsmojlighet);
+    return data.utdelningsmojlighet;
   } else {
+    console.log("case 2", data.vinst - data.skatt);
     return data.vinst - data.skatt;
   }
 }
@@ -145,13 +148,13 @@ function updateValues() {
   data.nettoLon = data.brutto - data.kommunal + data.jobbskatt - data.statligInkomstskatt;
   data.total = data.brutto + data.arbetsgivar + data.bil1 * (0.3142 + 0.295) + data.pension * 0.3114;
 
-  data.skatt = data.vinst * 0.22;
   data.nettoUtdelning = data.utdelning - data.utdelning * 0.2;
 
   data.omsattning = data.timArvode * data.antalTimmar;
   data.personal = data.total * 12 + data.pension * 12;
   data.kostnader = data.kostnad * 12 + data.bil2 * 12 + 0.03 * data.omsattning;
   data.vinst = data.omsattning - data.personal - data.kostnader;
+  data.skatt = data.vinst * 0.22;
   data.utdelningsmojlighet = data.brutto * 6 + data.bil1 * 6;
   data.nettoManad = data.nettoUtdelning / 12 + data.nettoLon;
   data.motsvarandeLon = (data.nettoManad - 32000) * 1.199 + data.nettoManad * 1.295;
