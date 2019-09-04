@@ -52,8 +52,8 @@ var sliders = [
   { element: timArvode, start: 750, step: 5, min: 500, max: 1200 },
   { element: antalTimmar, start: 1750, step: 5, min: 0, max: 2500 },
   { element: brutto, start: 42000, step: 1000, min: 30000, max: 70000 },
-  { element: kostnad, start: 5000, step: 5, min: 0, max: 15000 },
-  { element: utdelning, start: 273000, step: 5, min: 0, max: 1000000 } //TODO calculate the startvalue from the input
+  { element: kostnad, start: 5000, step: 100, min: 0, max: 15000 },
+  { element: utdelning, start: 273000, step: 1000, min: 0, max: 273000 } //TODO calculate the startvalue from the input
 ];
 
 function initSlider(sliderConfig) {
@@ -112,7 +112,7 @@ utdelning.noUiSlider.on("update", function(values, handle) {
   updateValues();
 });
 
-function caclculateUtdelningMax() {
+function calculateUtdelningMax() {
   if (data.vinst - data.skatt > data.utdelninsmojlighet) {
     return (max = data.utdelninsmojlighet);
   } else {
@@ -174,7 +174,7 @@ function updateView() {
   utdelning.noUiSlider.updateOptions({
     range: {
       min: 0,
-      max: caclculateUtdelningMax()
+      max: calculateUtdelningMax()
     }
   });
 }
