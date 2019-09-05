@@ -52,7 +52,7 @@ var data = {
 var sliders = [
   { element: timArvode, start: 750, step: 5, min: 500, max: 1200 },
   { element: antalTimmar, start: 1750, step: 5, min: 0, max: 2500 },
-  { element: brutto, start: 42000, step: 1000, min: 30000, max: 70000 },
+  { element: brutto, start: 42000, step: 1000, min: 40000, max: 70000 },
   { element: kostnad, start: 5000, step: 100, min: 0, max: 15000 },
   { element: utdelning, start: 273000, step: 1000, min: 0, max: 273000 }
 ];
@@ -110,6 +110,7 @@ kostnad.noUiSlider.on("update", function(values, handle) {
 utdelning.noUiSlider.on("update", function(values, handle) {
   utdelningSliderPreview.innerHTML = values[handle];
   data.utdelning = +values[handle];
+  updateValues();
 });
 
 function calculateUtdelningMax() {
@@ -187,5 +188,5 @@ function updateView() {
 }
 
 function updateDomElement(elementId, value) {
-  document.getElementById(elementId).innerHTML = value;
+  document.getElementById(elementId).innerHTML = Math.round(value);
 }
