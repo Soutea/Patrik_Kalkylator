@@ -11,78 +11,86 @@
   </head>
 
   <body>
-    <div class="sliders">
-        <p>T1 Timarvode: <span id="timarvode-preview"></span> kr/h</p>
+    <div class="section1">
+      <div class="inputs1">
+        <div class="sliderLabel"><p>Timarvode</p></div>
         <div class="slidecontainer">
           <div id="myRange1"></div>
         </div>
-        <span></span>
-
-        <p>
-          T2 Antal timmar per år (normalt år 1 750 h):
-          <span id="antaltimmar-preview"></span> timmar/år
-        </p>
+        <div class="sliderPreview"><span id="timarvode-preview"></span> kr</div>
+        <br />
+        <div class="sliderLabel"><p>Antal timmar per år (normalt år: 1 750 h):</p></div>
         <div class="slidecontainer">
           <div id="myRange2"></div>
         </div>
-        <span></span>
-
-        <p>
-          L1 Önskad brutto lön (rekommenderad lön 42 000 kr):
-          <span id="brutto-preview"></span> kr
-        </p>
+        <div class="sliderPreview"><span id="antaltimmar-preview"></span> timmar</div>
+        <br />
+        <div class="sliderLabel"><p>Önskad brutto lön (rekommenderad lön 42 000 kr):</p></div>
         <div class="slidecontainer">
           <div id="myRange3"></div>
         </div>
-        <span></span>
-
-        <p>K1 Kostnader: <span id="kostnad-preview"></span> kr</p>
+        <div class="sliderPreview"><span id="brutto-preview"></span> kr</div>
+        <br />
+        <div class="sliderLabel"><p>Kostnader:</p></div>
         <div class="slidecontainer">
           <div id="myRange4"></div>
         </div>
-        <span></span>
-      </table>
+        <div class="sliderPreview"><span id="kostnad-preview"></span> kr</div>
+
+        <form>
+          <p></p>
+          <input type="checkbox" onclick="handlePensionChange(this)" />
+          <label> Tjänstepension (4000 sek/mån) </label>
+          <p></p>
+          <input type="checkbox" onclick="handleBilChange(this)" />
+          <label>Bil (BMW 530e, Lexus NX hybrid eller motsvarande)</label>
+          <p></p>
+          <input type="checkbox" onclick="handleRDChange(this)" />
+          <label> Jobbar inom R&D, utveckling/forskning? </label>
+        </form>
+      </div>
+      <div class="resultat1">
+        <div class="resultat-namn">
+          <p>Omsättning</p>
+        </div>
+        <div class="resultat-varde"><span id="omsattning"></span> kr </div>
+        <br>
+        <div class="resultat-namn">
+        <p>Personalkostnader</p>
+        </div>
+        <div class="resultat-varde"><span id="personal"></span> kr <br /> </div>
+        <br>
+        <div class="resultat-namn">
+        <p>Kostnader</p>
+        </div>
+        <div class="resultat-varde"><span id="kostnader"></span> kr <br /> </div>
+        <br>
+        <div class="resultat-namn">
+        <p>Vinst</p>
+        </div>
+        <div class="resultat-varde"><span id="vinst"></span> kr <br /> </div>
+        <br>
+        <div class="resultat-namn">
+        <p>Utdelningsmöjlighet</p>
+        </div>
+        <div class="resultat-varde"></div> <span id="utdelningsmojlighet"></span> kr <br /> </div>
+      </div>
     </div>
-
-    <br />
-
-    <form>
-      <p></p>
-      <input type="checkbox" onclick="handlePensionChange(this)" />
-      <label> Tjänstepension (4000 sek/mån) </label>
-      <p></p>
-      <input type="checkbox" onclick="handleBilChange(this)" />
-      <label>Bil (BMW 530e, Lexus NX hybrid eller motsvarande)</label>
-      <p></p>
-      <input type="checkbox" onclick="handleRDChange(this)" />
-      <label> Jobbar inom R&D, utveckling/forskning? </label>
-    </form>
-
-    <h1>Resultat</h1>
-
-    <p>Omsättning</p>
-    <span id="omsattning"></span> <br />
-    <p>Personalkostnader</p>
-    <span id="personal"></span> <br />
-    <p>Kostnader</p>
-    <span id="kostnader"></span> <br />
-    <p>Vinst</p>
-    <span id="vinst"></span> <br />
-    <p>Utdelningsmöjlighet</p>
-    <span id="utdelningsmojlighet"></span> <br />
-
+<br>
     <p>Utdelning: <span id="utdelning-preview"></span> kr</p>
     <div class="slidecontainer">
       <div id="myRange5"></div>
     </div>
     <span></span>
 
-    <p>Nettolön inklusive utdelning</p>
-    <span id="nettoManad"></span> <br />
-    <p>Motsvarande bruttolön</p>
-    <span id="motsvarandeLon"></span> <br />
-    <p>Överskott</p>
-    <span id="overskott"></span> <br />
+    <div class="resultat2">
+      <p>Nettolön inklusive utdelning</p>
+      <span id="nettoManad"></span> kr <br />
+      <p>Motsvarande bruttolön</p>
+      <span id="motsvarandeLon"></span> kr <br />
+      <p>Överskott</p>
+      <span id="overskott"></span> kr <br />
+    </div>
 
     <script src="scarystuff.js"></script>
   </body>

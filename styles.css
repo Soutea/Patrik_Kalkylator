@@ -1,0 +1,35 @@
+.slidecontainer {
+  width: 20%;
+  display: inline-block;
+}
+.sliderLabel {
+  padding: 0px;
+  display: inline-block;
+}
+
+.sliderPreview {
+  padding: 0px;
+  display: inline-block;
+}
+
+.resultat1 {
+  display: inline-block;
+  flex: 1;
+}
+
+.inputs1 {
+  display: inline-block;
+  flex: 0.5;
+}
+
+.section1 {
+  display: flex;
+}
+
+.resultat-namn {
+  display: inline-block;
+}
+
+.resultat-varde {
+  display: inline-block;
+}

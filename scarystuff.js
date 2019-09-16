@@ -95,7 +95,6 @@ antalTimmar.noUiSlider.on("update", function(values, handle) {
 brutto.noUiSlider.on("update", function(values, handle) {
   bruttoSliderPreview.innerHTML = values[handle];
   data.brutto = +values[handle];
-
   updateValues();
 });
 
