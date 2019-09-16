@@ -33,3 +33,17 @@
 .resultat-varde {
   display: inline-block;
 }
+
+.section2 {
+  display: flex;
+}
+
+.inputs2 {
+  display: inline-block;
+  flex: 0.5;
+}
+
+.resultat2 {
+  display: inline-block;
+  flex: 1;
+}
