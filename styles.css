@@ -1,27 +1,31 @@
 .slidecontainer {
   width: 100%;
-  /* display: inline-block; */
   padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .sliderLabel {
-  padding: 0px;
-  /* display: inline-block; */
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sliderPreview {
-  padding: 0px;
-  /* display: inline-block; */
+  padding: 0 0 0 50px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.resultat1 {
-  float: right;
+.resultat {
   font-weight: 700;
 }
 
 .inputs {
-  /* display: inline-block; */
-  flex: 0.5;
+  flex: 1;
+  max-width: 1000px;
   display: grid;
   grid-template-columns: 20em 1fr 20em;
 }
@@ -31,19 +35,7 @@
   text-align: right;
 }
 
-.resultat-namn {
-  /* display: inline-block; */
-}
-
-.resultat-varde {
-  /* display: inline-block; */
-}
-
 .section2 {
   display: flex;
-}
-
-.resultat2 {
-  /* display: inline-block; */
-  font-weight: 700;
+  text-align: right;
 }

@@ -178,12 +178,15 @@ function updateView() {
   updateDomElement("motsvarandeLon", data.motsvarandeLon);
   updateDomElement("overskott", data.overskott);
 
-  utdelning.noUiSlider.updateOptions({
-    range: {
-      min: 0,
-      max: calculateUtdelningMax()
-    }
-  });
+  let utdelningsMax = calculateUtdelningMax();
+  if (utdelning.noUiSlider.options.range.max !== utdelningsMax) {
+    utdelning.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: utdelningsMax
+      }
+    });
+  }
 }
 
 function updateDomElement(elementId, value) {
