@@ -1,6 +1,7 @@
 .slidecontainer {
   width: 20%;
   display: inline-block;
+  padding: 0 20px 0 20px;
 }
 .sliderLabel {
   padding: 0px;
@@ -13,8 +14,9 @@
 }
 
 .resultat1 {
-  display: inline-block;
   flex: 1;
+  float: right;
+  font-weight: 700;
 }
 
 .inputs1 {
@@ -46,4 +48,5 @@
 .resultat2 {
   display: inline-block;
   flex: 1;
+  font-weight: 700;
 }
