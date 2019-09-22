@@ -33,66 +33,68 @@
           <div id="myRange4"></div>
         </div>
         <div class="sliderPreview"><span id="kostnad-preview"></span> kr</div>
-
-        <form>
-          <p></p>
-          <input type="checkbox" onclick="handlePensionChange(this)" />
-          <label> Tjänstepension (4000 sek/mån) </label>
-          <p></p>
-          <input type="checkbox" onclick="handleBilChange(this)" />
-          <label>Bil (BMW 530e, Lexus NX hybrid eller motsvarande)</label>
-          <p></p>
-          <input type="checkbox" onclick="handleRDChange(this)" />
-          <label> Jobbar inom R&D, utveckling/forskning? </label>
-        </form>
-      </div>
-      <div class="resultat">
-        <div class="resultat-namn">
-          <p>Omsättning: <span id="omsattning"></span> kr</p>
+        <div class="forms">
+          <form>
+            <p></p>
+            <input type="checkbox" onclick="handlePensionChange(this)" />
+            <label> Tjänstepension (4000 sek/mån) </label>
+            <p></p>
+            <input type="checkbox" onclick="handleBilChange(this)" />
+            <label>Bil (BMW 530e, Lexus NX hybrid eller motsvarande)</label>
+            <p></p>
+            <input type="checkbox" onclick="handleRDChange(this)" />
+            <label> Jobbar inom R&D, utveckling/forskning? </label>
+          </form>
         </div>
-        <div class="resultat-varde"> </div>
-        <div class="resultat-namn">
-        <p>Personalkostnader: <span id="personal"></span> kr </p>
         </div>
-        <div class="resultat-varde"> </div>
-        <div class="resultat-namn">
-        <p>Kostnader: <span id="kostnader"></span> kr</p>
+        <div class="resultat">
+          <div class="resultat-namn">
+            <p>Omsättning: <span id="omsattning"></span> kr</p>
+          </div>
+          <div class="resultat-varde"></div>
+          <div class="resultat-namn">
+            <p>Personalkostnader: <span id="personal"></span> kr</p>
+          </div>
+          <div class="resultat-varde"></div>
+          <div class="resultat-namn">
+            <p>Kostnader: <span id="kostnader"></span> kr</p>
+          </div>
+          <div class="resultat-varde"></div>
+          <div class="resultat-namn">
+            <p>Vinst: <span id="vinst"></span> kr</p>
+          </div>
+          <div class="resultat-varde"></div>
+          <div class="resultat-namn">
+            <p>Utdelningsmöjlighet: <span id="utdelningsmojlighet"></span> kr</p>
+          </div>
+          <div class="resultat-varde"></div>
         </div>
-        <div class="resultat-varde"> </div>
-        <div class="resultat-namn">
-        <p>Vinst: <span id="vinst"></span> kr </p>
-        </div>
-        <div class="resultat-varde"> </div>
-        <div class="resultat-namn">
-        <p>Utdelningsmöjlighet:  <span id="utdelningsmojlighet"></span> kr</p>
-        </div>
-        <div class="resultat-varde"></div> </div>
       </div>
     </div>
-<br>
-<div class ="section2">
-  <div class ="inputs">
-    <div class="sliderLabel"><p>Utdelning: </p></div>
+    <br />
+    <div class="section2">
+      <div class="inputs">
+        <div class="sliderLabel"><p>Utdelning:</p></div>
         <div class="slidecontainer">
           <div id="myRange5"></div>
         </div>
         <div class="sliderPreview"><span id="utdelning-preview"></span> kr</div>
       </div>
-    <div class="resultat">
+      <div class="resultat">
         <div class="resultat-namn">
-      <p>Nettolön inklusive utdelning: <span id="nettoManad"></span> kr </p>
+          <p>Nettolön inklusive utdelning: <span id="nettoManad"></span> kr</p>
+        </div>
+        <div class="resultat-varde"></div>
+        <div class="resultat-namn">
+          <p>Motsvarande bruttolön: <span id="motsvarandeLon"></span> kr</p>
+        </div>
+        <div class="resultat-varde"></div>
+        <div class="resultat-namn">
+          <p>Överskott: <span id="overskott"></span> kr</p>
+        </div>
+        <div class="resultat-varde"></div>
       </div>
-      <div class="resultat-varde"></div>
-      <div class="resultat-namn">
-      <p>Motsvarande bruttolön: <span id="motsvarandeLon"></span> kr</p>
     </div>
-    <div class="resultat-varde"> </div>
-      <div class="resultat-namn">
-      <p>Överskott:  <span id="overskott"></span> kr</p>
-      </div>
-      <div class="resultat-varde"> </div>
-    </div>
-  </div>
 
     <script src="scarystuff.js"></script>
   </body>

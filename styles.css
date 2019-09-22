@@ -23,6 +23,11 @@
   font-weight: 700;
 }
 
+.forms {
+  display: grid;
+  grid-column: 2;
+}
+
 .inputs {
   flex: 1;
   max-width: 1000px;

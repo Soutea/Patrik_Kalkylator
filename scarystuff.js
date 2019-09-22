@@ -79,35 +79,35 @@ console.log("hello World!;");
 
 // Värdet av timarvode
 timArvode.noUiSlider.on("update", function(values, handle) {
-  timArvodeSliderPreview.innerHTML = values[handle];
+  timArvodeSliderPreview.innerHTML = Math.round(+values[handle]).toLocaleString();
   data.timArvode = +values[handle];
   updateValues();
 });
 
 // Värdet på antal timmar
 antalTimmar.noUiSlider.on("update", function(values, handle) {
-  antalTimmarSliderPreview.innerHTML = values[handle];
+  antalTimmarSliderPreview.innerHTML = Math.round(+values[handle]).toLocaleString();
   data.antalTimmar = +values[handle];
   updateValues();
 });
 
 // Värdet på bruttolön
 brutto.noUiSlider.on("update", function(values, handle) {
-  bruttoSliderPreview.innerHTML = values[handle];
+  bruttoSliderPreview.innerHTML = Math.round(+values[handle]).toLocaleString();
   data.brutto = +values[handle];
   updateValues();
 });
 
 // Värdet på kostnaden
 kostnad.noUiSlider.on("update", function(values, handle) {
-  kostnadSliderPreview.innerHTML = values[handle];
+  kostnadSliderPreview.innerHTML = Math.round(+values[handle]).toLocaleString();
   data.kostnad = +values[handle];
   updateValues();
 });
 
 // Värdet på utdelningen
 utdelning.noUiSlider.on("update", function(values, handle) {
-  utdelningSliderPreview.innerHTML = values[handle];
+  utdelningSliderPreview.innerHTML = Math.round(+values[handle]).toLocaleString();
   data.utdelning = +values[handle];
   updateValues();
 });
@@ -190,5 +190,5 @@ function updateView() {
 }
 
 function updateDomElement(elementId, value) {
-  document.getElementById(elementId).innerHTML = Math.round(value);
+  document.getElementById(elementId).innerHTML = Math.round(value).toLocaleString();
 }
